@@ -117,7 +117,7 @@ object Zipkin extends Build {
     "sqlite-persistent" -> "org.xerial"     % "sqlite-jdbc"          % "3.7.2",
     "h2-memory"         -> "com.h2database" % "h2"                   % "1.3.172",
     "h2-persistent"     -> "com.h2database" % "h2"                   % "1.3.172",
-    "postgresql"        -> "postgresql"     % "postgresql"           % "8.4-702.jdbc4", // or "9.1-901.jdbc4",
+    "postgresql"        -> "org.postgresql" % "postgresql"           % "9.4-1200-jdbc41",
     "mysql"             -> "mysql"          % "mysql-connector-java" % "5.1.25"
   )
 
@@ -270,7 +270,8 @@ object Zipkin extends Build {
   ).settings(
     libraryDependencies ++= Seq(
       "com.typesafe.play" %% "anorm" % "2.3.7",
-      anormDriverDependencies("sqlite-persistent")
+      anormDriverDependencies("sqlite-persistent"),
+      anormDriverDependencies("postgresql")
     ) ++ scalaTestDeps,
 
     /* Add configs to resource path for ConfigSpec */
